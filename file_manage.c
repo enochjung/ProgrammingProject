@@ -55,6 +55,8 @@ word* get_word_list(int file_number, int print_way)
 		}
 	}
 
+	fclose(ifp);
+
 	return head.next;
 }
 
@@ -86,6 +88,8 @@ void overwrite_file(int file_number, word* target)
 		fwrite(target, sizeof(word), 1, ofp);
 		target = target->next;
 	}
+
+	fclose(ofp);
 }
 
 int get_last_number()
