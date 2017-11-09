@@ -1,3 +1,7 @@
+*
+!*.*
+!*/
+!makefile
 .DS_Store
 *.o
 *.exe
