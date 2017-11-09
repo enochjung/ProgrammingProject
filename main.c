@@ -3,7 +3,7 @@
 
 int main()
 {
-	printf("main.c - printf\n");
+	printf("main.c - printfasssdasdasdsdassd\n");
 	print_hello();
 	return 0;
 }
