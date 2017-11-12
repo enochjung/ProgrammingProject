@@ -43,7 +43,7 @@ void word_matching()
 	
 	//////////////////////////////////////
 	
-	system("clear");
+	//system("clear");
 	printf("테스트 전용 창입니다.\n\n");
 
 	word* head = get_word_list(1, 2);

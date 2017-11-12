@@ -1,5 +1,13 @@
 #include "file_manage.h"
 
+int compare_word(const void *p, const void *q)
+{
+	char *a = ((word*)p)->eng;
+	char *b = ((word*)q)->eng;
+
+	return strcmp(a, b);
+}
+
 word* get_word_list(int file_number, int print_way)
 {
 	char file_name[100];
@@ -75,20 +83,43 @@ void create_file(word* target)
 	overwrite_file(get_last_number()+1, target);
 }
 
+word* get_sorted_word(word* target, int size)
+{
+	int i;
+	word *array;
+
+	array = (word*)malloc(size*sizeof(word));
+
+	for(i=0; target!=NULL; i++)
+	{
+		array[i] = *target;
+		target = target->next;
+	}
+
+	qsort(array, size, sizeof(word), compare_word);
+	return array;
+}
+
 void overwrite_file(int file_number, word* target)
 {
 	char file_name[100];
 	FILE *ofp;
+	word *tmp, *array;
+	int size, i;
 
 	sprintf(file_name, "%d.dic", file_number);
 	ofp = fopen(file_name, "wb");
 
-	while(target != NULL)
-	{
-		fwrite(target, sizeof(word), 1, ofp);
-		target = target->next;
-	}
+	tmp = target;
+	for(size=0; tmp!=NULL; size++)
+		tmp = tmp->next;
 
+	array = get_sorted_word(target, size);
+
+	for(i=0; i<size; i++)
+		fwrite(array+i, sizeof(word), 1, ofp);
+
+	free(array);
 	fclose(ofp);
 }
 
