@@ -1,6 +1,6 @@
 #define WORD_MATCHING
-//#define FLASH_CARD
-//#define HANGMAN
+#define FLASH_CARD
+#define HANGMAN
 //#define WORDBOOK_MANAGE
 
 #include "header.h"

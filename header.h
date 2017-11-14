@@ -10,8 +10,7 @@
 typedef struct _word
 {
 	char eng[16];
-	int number;
-	char kor[3][91];
+	char kor[300];
     struct _word* next;
 } word;
 

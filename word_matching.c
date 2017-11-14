@@ -9,28 +9,23 @@ void word_matching()
 	word* e = (word*)malloc(sizeof(word));
 
 	strcpy(a->eng, "apple");
-	a->number = 1;
-	strcpy(a->kor[0], "사과");
+	strcpy(a->kor, "사과");
 	a->next = b;
 
 	strcpy(b->eng, "banana");
-	b->number = 1;
-	strcpy(b->kor[0], "바나나");
+	strcpy(b->kor, "바나나");
 	b->next = c;
 
 	strcpy(c->eng, "crystal");
-	c->number = 1;
-	strcpy(c->kor[0], "크리스탈");
+	strcpy(c->kor, "크리스탈");
 	c->next = d;
 
 	strcpy(d->eng, "dragon");
-	d->number = 1;
-	strcpy(d->kor[0], "용가리");
+	strcpy(d->kor, "용가리");
 	d->next = e;
 
 	strcpy(e->eng, "escape");
-	e->number = 1;
-	strcpy(e->kor[0], "탈출하다");
+	strcpy(e->kor, "탈출하다");
 	e->next = NULL;
 
 	overwrite_file(1, a);
@@ -50,7 +45,7 @@ void word_matching()
 	word* target = head;
 	while(target != NULL)
 	{
-		printf("%s - %s\n", target->eng, target->kor[0]);
+		printf("%s - %s\n", target->eng, target->kor);
 		target = target->next;
 	}
 
