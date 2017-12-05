@@ -1,5 +1,7 @@
-#include "flash_card.h"
-void flash_card()
+
+//작성자 : 박시균
+#include "flash_card.h"    
+void flash_card()                            //플래쉬카드를 실행하는 함수
 {
 	int spd,file_number,print_way;
 	printf("속도(초) : ");

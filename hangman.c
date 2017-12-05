@@ -1,6 +1,8 @@
+
+//작성자 : 박시균
 #include"hangman.h"
 
-void hangman()
+void hangman()                                //행맨을 실행하는 함수
 {
 	int i,file_number, Attempt = 1,life=6;
 	char un_line[50]={0};
@@ -29,22 +31,22 @@ void hangman()
 		else if(life==4){
 			printf("--------------------+\n");
 			printf("                    o\n");
-			printf("                    l\n\n\n");
+			printf("                    |\n\n\n");
 		}
 		else if(life==3){
 			printf("--------------------+\n");
 			printf("                    o\n");
-			printf("                   /l\n\n\n");
+			printf("                   /|\n\n\n");
 		}
 		else if(life==2){
 			printf("--------------------+\n");
 			printf("                    o\n");
-			printf("                   /l\\\n\n\n");
+			printf("                   /|\\\n\n\n");
 		}
 		else if(life==1){
 		        printf("--------------------+\n");
 			printf("                    o\n");
-			printf("                   /l\\\n");
+			printf("                   /|\\\n");
 			printf("                   / \n\n");
 		}
 
@@ -80,8 +82,11 @@ void hangman()
 			if(success==1)
 			{
 				printf("#############################\n");
+				printf("#############################\n");
 				printf("#####Congratulations!!!######\n");
 				printf("#############################\n");
+				printf("#############################\n");
+
 				getchar();
 				getchar();
 				break;

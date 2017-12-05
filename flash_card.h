@@ -1,8 +1,7 @@
-#ifndef __FLASH_CARD_H__
-#define __FLASH_CARD_H__
+
+//작성자 :박시균
 
 #include "file_manage.h"
 
 void flash_card();
 
-#endif
