@@ -1,5 +1,5 @@
 
-// 작성자:김시균
+// 작성자:박시균
 #include "header.h"
 #include "file_manage.h"
 #include "word_matching.h"
