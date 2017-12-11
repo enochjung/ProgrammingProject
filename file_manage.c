@@ -1,6 +1,8 @@
+// 작성자 : 정에녹
+
 #include "file_manage.h"
 
-int compare_word(const void *p, const void *q)
+static int compare_word(const void *p, const void *q)
 {
 	char *a = ((word*)p)->eng;
 	char *b = ((word*)q)->eng;
@@ -16,7 +18,11 @@ word* get_word_list(int file_number, int print_way)
 	int check;
 
 	sprintf(file_name, "%d.dic", file_number);
-	ifp = fopen(file_name, "rb");
+	if((ifp = fopen(file_name, "rb")) == NULL)
+	{
+		printf("ERROR - 파일 '%s' 읽기 실패\n", file_name);
+		exit(-1);
+	}
 
 	head.next = NULL;
 
@@ -83,7 +89,7 @@ void create_file(word* target)
 	overwrite_file(get_last_number()+1, target);
 }
 
-word* get_sorted_word(word* target, int size)
+static word* get_sorted_word(word* target, int size)
 {
 	int i;
 	word *array;
@@ -108,7 +114,11 @@ void overwrite_file(int file_number, word* target)
 	int size, i;
 
 	sprintf(file_name, "%d.dic", file_number);
-	ofp = fopen(file_name, "wb");
+	if((ofp = fopen(file_name, "wb")) == NULL)
+	{
+		printf("ERROR - 파일 '%s' 쓰기 실패\n", file_name);
+		exit(-1);
+	}
 
 	tmp = target;
 	for(size=0; tmp!=NULL; size++)

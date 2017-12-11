@@ -1,21 +1,25 @@
-#include "flash_card.h"
 
-void flash_card()
+//작성자 : 박시균
+#include "flash_card.h"    
+void flash_card()                            //플래쉬카드를 실행하는 함수
 {
 	int spd,file_number,print_way;
-	printf(" 속도(초) : \n");
-	scanf(" %d",&spd);
-	spd = spd*1000;
-	printf(" 파일명(일차) : \n");
-	scanf(" %d", &file_number);
-	printf("출력방식 : \n");
-	scanf(" %d ",&print_way);
+	printf("속도(초) : ");
+	scanf("%d",&spd);
+	printf("파일명(일차) : ");
+	scanf("%d", &file_number);
+	printf("출력방식(알파벳 순서대로:1, 무작위:2) : ");
+	scanf("%d",&print_way);
 	word*head = get_word_list(file_number,print_way);
-	for( ; head ;head->next){
-		printf(" %s\n", head->eng[0]);
+	for(word *t=head; t ; t=t->next){
+	        system("clear");
+		printf(">>영어 단어 암기 프로그램 : 플래쉬카드<<\n\n\n\n");
+		printf("%s\n", t->eng);
 		sleep(spd);
-		for(int i =0;i<3;i++)
-			printf(" %s \n", head->kor[i]);
+		printf(" %s \n", t->kor);
+		sleep(spd);
+			
 	}
+
 	free_word_list(head);
 }

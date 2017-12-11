@@ -1,8 +1,5 @@
-#ifndef __HANGMAN_H__
-#define __HANGMAN_H__
-
+//작성자 : 박시균
 #include "file_manage.h"
 
 void hangman();
 
-#endif

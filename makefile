@@ -1,5 +1,5 @@
-english : main.o file_manage.o word_matching.o flash_card.o hangman.o
-	gcc -o english main.o file_manage.o word_matching.o flash_card.o hangman.o
+english : main.o file_manage.o word_matching.o flash_card.o hangman.o wordbook_manage.o
+	gcc -o english main.o file_manage.o word_matching.o flash_card.o hangman.o wordbook_manage.o
 
 main.o : main.c
 	gcc -c main.c
@@ -15,3 +15,6 @@ flash_card.o : flash_card.c
 
 hangman.o : hangman.c
 	gcc -c hangman.c
+
+wordbook_manage.o : wordbook_manage.c
+	gcc -c wordbook_manage.c

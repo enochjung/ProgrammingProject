@@ -1,3 +1,5 @@
+// 작성자 : 정에녹
+
 #ifndef __FILE_MANAGE_H__
 #define __FILE_MANAGE_H__
 

@@ -1,3 +1,5 @@
+// 작성자 : 정에녹
+
 #ifndef __HEADER_H__
 #define __HEADER_H__
 

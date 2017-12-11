@@ -1,87 +1,103 @@
-#include "hangman.h"
 
-void hangman()
+//작성자 : 박시균
+#include"hangman.h"
+
+void hangman()                                //행맨을 실행하는 함수
 {
 	int i,file_number, Attempt = 1,life=6;
-	char un_line[]={0};
-	char use_str[]={0};
+	char un_line[50]={0};
+	char use_str[30]={0};
 	char *str;
 	char alp_store;
 	printf("파일명 : ");
 	scanf("%d" ,&file_number);
 	word*head=get_word_list(file_number,2);
-	for(i=0;i<(int)strlen(head->eng);i++)
-		un_line[i]='_';
-	while(life != 0)
+	for(i=0;i<(int)strlen(head->eng);i++){
+		un_line[i*2]='_';
+		un_line[i*2+1]=' ';
+	}
+	
+	while(life>0)
 	{
 		system("clear");
-		printf("(힌트) %s   %s   %s\n",head->kor[0],head->kor[1],head->kor[2]);
+		printf(" >>영어 단어 암기 프로그램 : 행맨 <<\n");
+		printf("(힌트)  %s  \n\n",head->kor);
 		if(life==6)
+			printf("--------------------+\n\n\n\n\n");
+      	        else if(life==5){
 			printf("--------------------+\n");
-      	        else 
-			if(life==5){
-				printf("--------------------+\n");
-				printf("                    o\n");
-			}
-			else
-				if(life==4){
-					printf("--------------------+\n");
-					printf("                    o\n");
-					printf("                    l\n");
-				}
-				else 
-					if(life==3){
-						printf("--------------------+\n");
-						printf("                    o\n");
-						printf("                   /l\\\n");
-					}
-					else 
-						if(life==2){
-							printf("--------------------+\n");
-							printf("                    o\n");
-							printf("                   /l\\\n");
-						}
-						else
-							if(life==1){
-								printf("--------------------+\n");
-								printf("                    o\n");
-								printf("                   /l\\\n");
-								printf("                   / \n");
-							}
+			printf("                    o\n\n\n\n");
+		}
+		else if(life==4){
+			printf("--------------------+\n");
+			printf("                    o\n");
+			printf("                    |\n\n\n");
+		}
+		else if(life==3){
+			printf("--------------------+\n");
+			printf("                    o\n");
+			printf("                   /|\n\n\n");
+		}
+		else if(life==2){
+			printf("--------------------+\n");
+			printf("                    o\n");
+			printf("                   /|\\\n\n\n");
+		}
+		else if(life==1){
+		        printf("--------------------+\n");
+			printf("                    o\n");
+			printf("                   /|\\\n");
+			printf("                   / \n\n");
+		}
 
-		printf("%d 번째 시도 : ", Attempt);
-		printf("%s\n ", un_line);
+		printf(" %s\n ", un_line);
+		
+		printf(" %d 번째 시도 : ", Attempt);
 		Attempt=Attempt+1;
-		scanf(" %c ",&alp_store);
+		scanf(" %c",&alp_store);
 		use_str[Attempt-2]=alp_store;
 		str=strchr(head->eng,alp_store);
 		if(str==NULL)
 		{
-			printf(" %c 는 이단어에 포함되어 있지 않습니다.\n",alp_store);
-			printf(" 목숨이 %d 개 남았습니다.\n",--life);
-			printf(" 사용된 알파벳 : \n%s\n",use_str);
+			life--;
 		}
 		else
 		{
 			while(str!=NULL)
 			{
-				un_line[str-head->eng]=alp_store;
+				un_line[(int)(str-head->eng)*2]=alp_store;
 				str=strchr(str+1,alp_store);
 			}
-			printf("%c 는 이단어에 포함되어 있습니다.\n",alp_store);
-			printf(" 목숨이 %d 개 남았습니다.\n",life);
-			printf(" 사용된 알파벳 : \n%s\n",use_str);
-			if(strcmp(un_line,head->eng)==0)
+			int success = 0;
+			for(i=0;; i++)
 			{
-				printf("#############################");
-				printf("#####Congratulations!!!######");
-				printf("#############################");
+				if(head->eng[i]=='\0')
+				{
+					success = 1;
+					break;
+				}
+				if(un_line[i*2] != head->eng[i])
+					break;
+			}
+			if(success==1)
+			{
+				printf("#############################\n");
+				printf("#############################\n");
+				printf("#####Congratulations!!!######\n");
+				printf("#############################\n");
+				printf("#############################\n");
+
+				getchar();
+				getchar();
 				break;
 			}
 		}
-		sleep(1);
 	}
 	if(life==0)
+	{
 		printf(" You failed ! \n");
+		getchar();
+		getchar();
+	}
 	free_word_list(head);
 }
