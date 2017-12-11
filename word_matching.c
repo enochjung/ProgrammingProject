@@ -1,55 +1,51 @@
+/*typedef struct{
+  int number;
+  char eng[16];
+  char kor[3][61
+  word* next]word;*/
 #include "word_matching.h"
+void word_matching(){
+  printf("파일명(일차) : ");
+  int filenum;
+  int print_way;
+  scanf("%d",&filenum);
+  printf("출력 방식(알파벳 순서대로 : 1,무작위 :2) : ");
+  scanf("%d",&print_way);
+  system("clear");
 
-void word_matching()
-{
-	word* a = (word*)malloc(sizeof(word));
-	word* b = (word*)malloc(sizeof(word));
-	word* c = (word*)malloc(sizeof(word));
-	word* d = (word*)malloc(sizeof(word));
-	word* e = (word*)malloc(sizeof(word));
+  int num=0, total=0;
+  printf(">> 영어 단어 암기 프로그램: 영어 단어 맞추기 <<\n");
+  word* head=get_word_list(filenum,print_way);
+  word* sion=head;
+  char tmp[16]={0};
+  printf("%s -> ",head->kor);
+  if(head!=NULL)
+  {
+    scanf("%s",tmp);
+    while(strcmp(tmp,".quit"))    //.quit가 눌리지 않으면
+    {
+      if(!strcmp(tmp,head->eng)) //똑같으면
+      {
+        printf("correct!\n");
+        num++;
+      }
+      else
+        printf("incorrect!\n");
 
-	strcpy(a->eng, "apple");
-	strcpy(a->kor, "사과");
-	a->next = b;
+      total++;
+      head=head->next;
 
-	strcpy(b->eng, "banana");
-	strcpy(b->kor, "바나나");
-	b->next = c;
+      if(head==NULL)
+        head=sion;
 
-	strcpy(c->eng, "crystal");
-	strcpy(c->kor, "크리스탈");
-	c->next = d;
+      printf("%s->",head->kor);
+      scanf("%s",tmp);
+    }
+  }
+  printf("당신의 점수는 %.2f점입니다. ",((float)num/total)*100);
+  free_word_list(sion);
+  getchar();
+  getchar();
+  system("clear");
 
-	strcpy(d->eng, "dragon");
-	strcpy(d->kor, "용가리");
-	d->next = e;
-
-	strcpy(e->eng, "escape");
-	strcpy(e->kor, "탈출하다");
-	e->next = NULL;
-
-	overwrite_file(1, a);
-
-	free(a);
-	free(b);
-	free(c);
-	free(d);
-	free(e);
-	
-	//////////////////////////////////////
-	
-	//system("clear");
-	printf("테스트 전용 창입니다.\n\n");
-
-	word* head = get_word_list(1, 2);
-	word* target = head;
-	while(target != NULL)
-	{
-		printf("%s - %s\n", target->eng, target->kor);
-		target = target->next;
-	}
-
-	free_word_list(head);
-
-	sleep(3);
 }
